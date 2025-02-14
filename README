@@ -1,0 +1,23 @@
+name: Juan Heredia
+
+Description:
+
+1. Have data saved when I come back to it.
+2. Be able to add tasks with all the fields
+3. Task Name
+4. Task Description
+5. Task Status
+    - ToDo
+    - In Progress
+    - Complete
+6. Priority Status
+    - Low
+    - Medium
+    - High
+7. Due Date
+8. Be able to edit tasks
+9. When changing status the item should move to the appropriate spot without refreshing the page.
+10. Use creating elements
+11. Must use import and export in this challenge
+12. Be sure to test everything for this.
+13. Desktop Build for this application.
