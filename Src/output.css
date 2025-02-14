@@ -625,6 +625,9 @@
   .h-\[80\%\] {
     height: 80%;
   }
+  .h-\[90\%\] {
+    height: 90%;
+  }
   .h-\[95\%\] {
     height: 95%;
   }
@@ -651,6 +654,9 @@
   }
   .max-h-full {
     max-height: 100%;
+  }
+  .min-h-\[250px\] {
+    min-height: 250px;
   }
   .w-1 {
     width: calc(var(--spacing) * 1);
@@ -711,6 +717,9 @@
   }
   .overflow-auto {
     overflow: auto;
+  }
+  .overflow-hidden {
+    overflow: hidden;
   }
   .overflow-x-hidden {
     overflow-x: hidden;

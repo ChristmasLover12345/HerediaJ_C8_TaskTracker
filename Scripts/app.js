@@ -65,57 +65,62 @@ function displayTasks() {
     taskEditDesc.placeholder = "Task Description";
 
     const taskEditStatus = document.createElement("select");
-    const statusOptions = ["Incomplete", "In Progress", "Complete"];
-    statusOptions.forEach((option) => {
-      const opt = document.createElement("option");
-      opt.value = option;
-      opt.addEventListener("click", (e) => {
-        data.status = option;
-        UpdateLocalStorage(data.id, data);
 
-        if (data.status === "Incomplete") {
-          incompleteTasks.appendChild(taskDiv);
-        } else if (data.status === "In Progress") {
-          inProgressTasks.appendChild(taskDiv);
-        } else if (data.status === "Complete") {
-          completeTasks.appendChild(taskDiv);
-        }
-        displayTasks()
-      });
+
+    taskEditStatus.addEventListener("change", () => {
+      data.status = taskEditStatus.value;
+      UpdateLocalStorage(data.id, data);
+      displayTasks()
+    });
+
+    const statusOptions = ["Progress", "Incomplete", "In Progress", "Complete"];
+    statusOptions.forEach((option) => {
+    
+      const opt = document.createElement("option");
+      console.log(opt)
       opt.innerText = option;
       taskEditStatus.appendChild(opt);
     });
 
+    if (data.status === "Incomplete") {
+      incompleteTasks.appendChild(taskDiv);
+    } else if (data.status === "In Progress") {
+      inProgressTasks.appendChild(taskDiv);
+    } else if (data.status === "Complete") {
+      completeTasks.appendChild(taskDiv);
+    }
+
     const taskEditPriority = document.createElement("select");
-    const priorityOptions = ["Low", "Medium", "High"];
+
+    taskEditPriority.addEventListener("change", () => {
+      data.priorityStatus = taskEditPriority.value;
+      UpdateLocalStorage(data.id, data);
+      displayTasks()
+    });
+
+
+    const priorityOptions = ["Priority","Low", "Medium", "High"];
     priorityOptions.forEach((option) => {
       const opt = document.createElement("option");
       opt.value = option;
       opt.innerText = option;
-
-      opt.addEventListener("click", () => {
-        data.priorityStatus = option;
-        taskPriority.innerText = data.priorityStatus;
-        UpdateLocalStorage(data.id, data);
-
-        if (data.priorityStatus === "Low") {
-          taskDiv.classList.add("order-3");
-          taskDiv.classList.remove("order-1");
-          taskDiv.classList.remove("order-2");
-        } else if (data.priorityStatus === "Medium") {
-          taskDiv.classList.add("order-2");
-          taskDiv.classList.remove("order-1");
-          taskDiv.classList.remove("order-3");
-        } else if (data.priorityStatus === "High") {
-          taskDiv.classList.add("order-1");
-          taskDiv.classList.remove("order-2");
-          taskDiv.classList.remove("order-3");
-          displayTasks()
-        }
-      });
-
       taskEditPriority.appendChild(opt);
     });
+
+    if (data.priorityStatus === "Low") {
+      taskDiv.classList.add("order-3");
+      taskDiv.classList.remove("order-1");
+      taskDiv.classList.remove("order-2");
+    } else if (data.priorityStatus === "Medium") {
+      taskDiv.classList.add("order-2");
+      taskDiv.classList.remove("order-1");
+      taskDiv.classList.remove("order-3");
+    } else if (data.priorityStatus === "High") {
+      taskDiv.classList.add("order-1");
+      taskDiv.classList.remove("order-2");
+      taskDiv.classList.remove("order-3");
+      
+    }
 
     const taskEditDueDate = document.createElement("input");
     taskEditDueDate.type = "date";
@@ -184,7 +189,7 @@ function displayTasks() {
 
     taskDiv.classList.add(
       "w-[90%]",
-      "h-[250px]",
+      "min-h-[250px]",
       "mx-auto",
       "flex",
       "flex-col",
@@ -199,7 +204,7 @@ function displayTasks() {
       "block"
     );
     taskName.classList.add("text-2xl", "font-bold");
-    taskDesc.classList.add("text-gray-700", "mb-2");
+    taskDesc.classList.add("text-gray-700", "mb-2", "text-center");
     taskPriority.classList.add("text-gray-700", "mb-2");
     taskDueDate.classList.add("text-gray-700", "mb-2");
     taskEdit.classList.add(
