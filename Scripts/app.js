@@ -43,7 +43,7 @@ import { GetFromLocalStorage, SaveToLocalStorage, RemoveFromLocalStorage, Update
                 opt.value = option;
                 opt.addEventListener('click', (e) => {
                 task.status = option;
-                    
+                UpdateLocalStorage(data);
 
                 if (task.status === 'Incomplete') {
                     incompleteTasks.appendChild(taskDiv);
@@ -65,7 +65,29 @@ import { GetFromLocalStorage, SaveToLocalStorage, RemoveFromLocalStorage, Update
                 opt.value = option;
                 opt.innerText = option;
 
-                
+                opt.addEventListener('click', (e) => { 
+                    task.priorityStatus = option;
+                    taskPriority.innerText = task.priorityStatus;
+                    UpdateLocalStorage(data);
+
+                    if (task.priorityStatus === 'Low') {
+                        taskDiv.classList.add('order-3');
+                        taskDiv.classList.remove('order-1');
+                        taskDiv.classList.remove('order-2');
+                    }
+                    else if (task.priorityStatus === 'Medium') {
+                        taskDiv.classList.add('order-2');
+                        taskDiv.classList.remove('order-1');
+                        taskDiv.classList.remove('order-3');
+                    }
+                    else if (task.priorityStatus === 'High') {
+                        taskDiv.classList.add('order-1');
+                        taskDiv.classList.remove('order-2');
+                        taskDiv.classList.remove('order-3');
+                    }
+
+
+                });
 
 
                 taskEditPriority.appendChild(opt);
@@ -74,15 +96,15 @@ import { GetFromLocalStorage, SaveToLocalStorage, RemoveFromLocalStorage, Update
             const taskEditDueDate = document.createElement('input');
             taskEditDueDate.type = 'date';
 
-            const taskEditSave = document.createElement('button');
+            const taskEditclose = document.createElement('button');
             const taskEditDelete = document.createElement('button');
 
 
-            taskEditDiv.classList.add('flex', 'justify-between', 'items-center', 'w-full', 'h-full', 'hidden');
+            taskEditDiv.classList.add('flex', 'flex-col', 'items-center', 'w-full', 'h-full', 'hidden', 'absolute', 'top-0', 'left-0', 'bg-gray-200', 'p-4', 'rounded-lg', 'shadow-md');
 
 
 
-            taskDiv.classList.add('w-[90%]',"h-[100px]", 'mx-auto', 'flex', 'justify-between', 'items-center', 'bg-white', 'rounded-lg', 'shadow-md', 'p-4', 'mb-4');
+            taskDiv.classList.add('w-[90%]',"h-[100px]", 'mx-auto', 'flex', 'justify-between', 'items-center', 'bg-white', 'rounded-lg', 'shadow-md', 'p-4', 'mb-4', 'overflow-auto', 'relative');
             taskName.classList.add('text-lg', 'font-bold');
             taskDesc.classList.add('text-gray-700');
             taskPriority.classList.add('text-gray-700');
@@ -91,11 +113,19 @@ import { GetFromLocalStorage, SaveToLocalStorage, RemoveFromLocalStorage, Update
             taskEdit.innerText = 'Edit';
 
 
+            
+
+
             taskEdit.addEventListener('click', (e) => {
                 taskEditDiv.classList.toggle('hidden');
+                
             });
           
-          
+          taskEditclose.innerText = 'Close';
+            taskEditclose.classList.add('bg-blue-500', 'text-white', 'px-4', 'py-2', 'rounded');
+            taskEditclose.addEventListener('click', (e) => {
+                taskEditDiv.classList.toggle('hidden');
+            })
           
           
             taskName.innerText = data.name;
@@ -104,6 +134,22 @@ import { GetFromLocalStorage, SaveToLocalStorage, RemoveFromLocalStorage, Update
             taskPriority.innerText = data.priorityStatus;
             taskDueDate.innerText = data.dueDate;
 
+
+            if (task.priorityStatus === 'Low') {
+                taskDiv.classList.add('order-3');
+                taskDiv.classList.remove('order-1');
+                taskDiv.classList.remove('order-2');
+            }
+            else if (task.priorityStatus === 'Medium') {
+                taskDiv.classList.add('order-2');
+                taskDiv.classList.remove('order-1');
+                taskDiv.classList.remove('order-3');
+            }
+            else if (task.priorityStatus === 'High') {
+                taskDiv.classList.add('order-1');
+                taskDiv.classList.remove('order-2');
+                taskDiv.classList.remove('order-3');
+            }
 
 
 

@@ -556,6 +556,15 @@
   .z-50 {
     z-index: 50;
   }
+  .order-1 {
+    order: 1;
+  }
+  .order-2 {
+    order: 2;
+  }
+  .order-3 {
+    order: 3;
+  }
   .col-span-2 {
     grid-column: span 2 / span 2;
   }
@@ -697,6 +706,9 @@
   .gap-4 {
     gap: calc(var(--spacing) * 4);
   }
+  .overflow-auto {
+    overflow: auto;
+  }
   .overflow-x-hidden {
     overflow-x: hidden;
   }
@@ -752,6 +764,9 @@
   }
   .bg-gray-400 {
     background-color: var(--color-gray-400);
+  }
+  .bg-green-200 {
+    background-color: var(--color-green-200);
   }
   .bg-transparent {
     background-color: transparent;
