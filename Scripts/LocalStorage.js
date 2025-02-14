@@ -1,10 +1,4 @@
-const task = {
-    name: "Task Name",
-    description: "Task Description",
-    status: "Incomplete", 
-    priorityStatus: "High", 
-    dueDate: "2023-12-31" 
-};
+
 
 
 function GetFromLocalStorage() {
@@ -25,20 +19,20 @@ function SaveToLocalStorage(task) {
     localStorage.setItem('tasks', JSON.stringify(data));
 }
 
-function RemoveFromLocalStorage(task) {
+function RemoveFromLocalStorage(taskId) {
     const data = GetFromLocalStorage();
-    const index = data.indexOf(task);
+    const index = data.findIndex(task => task.id === taskId);
     if (index > -1) {
         data.splice(index, 1);
     }
     localStorage.setItem('tasks', JSON.stringify(data));
 }
 
-function UpdateLocalStorage(task) {
+function UpdateLocalStorage(taskId, updatedTask) {
     const data = GetFromLocalStorage();
-    const index = data.indexOf(task);
+    const index = data.findIndex(task => task.id === taskId);
     if (index > -1) {
-        data[index] = task;
+        data[index] = updatedTask;
     }
     localStorage.setItem('tasks', JSON.stringify(data));
 }
